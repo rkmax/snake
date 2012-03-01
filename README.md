@@ -24,3 +24,4 @@ Aun se encuentra en una fase muy temprana de desarrollo, donde todavia el juego 
 - La tecla ESC despliega el menú de opciones
 - La tecla ENTER pausa el juego
 
+[1]:http://www.sfml-dev.org
