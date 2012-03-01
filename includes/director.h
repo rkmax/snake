@@ -1,5 +1,7 @@
-
 #include <stdlib.h>
+#include "screen.h"
+#ifndef _DIRECTOR_H_
+#define _DIRECTOR_H_
 
 namespace snake {
 
@@ -9,14 +11,16 @@ namespace snake {
         static Director &Instance();
         virtual ~Director(){};
 
-        //void setScreen(Screen &screen);
+        void setCurrentScreen(Screen &screen);
+        Screen *getCurrentScreen();
     private:
 
-        //Screen *screen;
+        Screen *screen;
 
         static Director *instance;
         static void Destroy();
-        Director(){};
+        Director();
         Director(const Director& d){}
     };
 }
+#endif

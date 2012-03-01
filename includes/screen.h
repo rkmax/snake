@@ -1,5 +1,10 @@
-
 #include <iostream>
+#include <string>
+
+using namespace std;
+
+#ifndef _SCREEN_H
+#define _SCREEN_H
 
 namespace snake {
 
@@ -11,10 +16,11 @@ namespace snake {
     class Screen
     {
     public:
-        Screen();
-        virtual ~Screen();
+        Screen(){};
+        virtual ~Screen(){};
         virtual void run();
     private:
+        virtual string getName() = 0;
         virtual void checkInput() = 0;
         virtual void updateLogic() = 0;
         virtual void drawThis() = 0;
@@ -27,9 +33,10 @@ namespace snake {
     class WelcomeScreen: public Screen
     {
     public:
-        WelcomeScreen();
-        virtual ~WelcomeScreen();
+        WelcomeScreen(){};
+        virtual ~WelcomeScreen(){};
     private:
+        string getName();
         void checkInput();
         void updateLogic();
         void drawThis();
@@ -42,9 +49,10 @@ namespace snake {
     class GameScreen: public Screen
     {
     public:
-        GameScreen();
-        virtual ~GameScreen();
+        GameScreen(){};
+        virtual ~GameScreen(){};
     private:
+        string getName();
         void checkInput();
         void updateLogic();
         void drawThis();
@@ -57,11 +65,13 @@ namespace snake {
     class ScoreScreen: public Screen
     {
     public:
-        ScoreScreen();
-        virtual ~ScoreScreen();
+        ScoreScreen(){};
+        virtual ~ScoreScreen(){};
     private:
+        string getName();
         void checkInput();
         void updateLogic();
         void drawThis();
     };
 }
+#endif

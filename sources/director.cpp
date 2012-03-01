@@ -15,7 +15,7 @@ namespace snake {
         return *instance;
     }
 
-    void Director::Director()
+    Director::Director()
     {
         screen = 0;
     }
@@ -25,10 +25,14 @@ namespace snake {
         if (instance != 0) delete instance;
     }
 
-    /*
-    void Director:setScreen(Screen &screen)
+
+    void Director::setCurrentScreen(Screen &screen)
     {
 
     }
-    */
+
+    Screen *Director::getCurrentScreen()
+    {
+        return screen;
+    }
 }

@@ -6,8 +6,9 @@ LDFLAGS =
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
 CXXFLAGS = -Wall
 RM = rm -rf
+OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o director.o
 
-OBJECTS =  main.o $(addprefix $(OBJ_DIR), screen.o director.o)
+OBJECTS =  main.o $(addprefix $(OBJ_DIR), $(OBJS))
 
 OBJ_DIR = objects/
 SRC_DIR = sources/
