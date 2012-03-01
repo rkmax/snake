@@ -20,10 +20,10 @@ namespace snake {
         virtual ~Screen(){};
         virtual void run();
     private:
-        virtual string getName() = 0;
-        virtual void checkInput() = 0;
-        virtual void updateLogic() = 0;
-        virtual void drawThis() = 0;
+        virtual string getName();
+        virtual void checkInput();
+        virtual void updateLogic();
+        virtual void drawThis();
     };
 
     /**

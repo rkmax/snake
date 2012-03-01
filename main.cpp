@@ -7,28 +7,12 @@ using namespace snake;
 int main(int argc, char const *argv[])
 {
     RenderWindow App(VideoMode(640, 480), "Snake");
-    WelcomeScreen welcomeScr;
-    welcomeScr.run();
 
-    Director &director = Director::Instance();
+    Director director = Director::Instance();
 
-    // Aqui paso algo
+    Screen *initialScreen = new WelcomeScreen();
 
-    Image image;
-
-    if (!image.LoadFromFile("/home/julian/Imágenes/snake_screen.jpg"))
-    {
-        return EXIT_FAILURE;
-    }
-
-    Sprite Welcome(image);
-
-    Font comicTff;
-
-    if (!comicTff.LoadFromFile("./assets/comic.ttf"))
-    {
-        return EXIT_FAILURE;
-    }
+    director->setCurrentScreen(initialScreen);
 
     while(App.IsOpened())
     {
