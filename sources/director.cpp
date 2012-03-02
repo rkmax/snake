@@ -4,7 +4,7 @@
 namespace snake {
     Director *Director::instance = 0;
 
-    Director &Director::Instance()
+    Director& Director::Instance()
     {
         if(0 == instance) {
             instance = new Director();
@@ -23,5 +23,10 @@ namespace snake {
     void Director::Destroy()
     {
         if (instance != 0) delete instance;
+    }
+
+    void Director::run()
+    {
+
     }
 }

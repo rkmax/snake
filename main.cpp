@@ -13,6 +13,8 @@ int main(int argc, char const *argv[])
     WelcomeScreen *initialScreen = new WelcomeScreen();
 
     director->setCurrentScreen(*initialScreen);
+    director->getCurrentScreen()->setDirector(director);
+    director->setInputManager(App.GetInput());
 
     while(App.IsOpened())
     {
@@ -21,7 +23,8 @@ int main(int argc, char const *argv[])
         while(App.GetEvent(event))
         {
             // LLama ejecuta la logica de la pantalla actual
-            director->getCurrentScreen()->run(event);
+            director->getCurrentScreen()->run();
+            director->run();
 
             // TODO: Pendiente configurar que la salida de la aplicacion sea manejado por Director
 

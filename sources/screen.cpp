@@ -3,7 +3,7 @@
 
 namespace snake {
 
-    void Screen::run(Event ev) {
+    void Screen::run() {
 
         checkInput();
         updateLogic();

@@ -11,7 +11,10 @@ namespace snake {
 
     void WelcomeScreen::checkInput()
     {
-
+        if (director->getInputManager().IsKeyDown(sf::Key::Down))
+        {
+            cout << "Pulsata fecha hacia abajo" << endl;
+        }
     }
 
     void WelcomeScreen::updateLogic()

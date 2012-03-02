@@ -9,7 +9,7 @@ using namespace sf;
 #define _SCREEN_H
 
 namespace snake {
-
+    class Director;
     /**
      * Clase abstracta que maneja las pantallas
      * Cualquier pantalla del juego debe derivar de esta
@@ -20,7 +20,9 @@ namespace snake {
     public:
         Screen(){};
         virtual ~Screen(){};
-        virtual void run(Event ev);
+        virtual void run();
+        virtual void setDirector(Director *dir){ director = dir;}
+        Director *director;
     private:
         virtual string getName() = 0;
         virtual void checkInput() = 0;
