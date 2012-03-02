@@ -1,4 +1,4 @@
-![Snake](https://raw.github.com/rkmax/snake/master/assets/snake_title.png)
+![Snake](https://raw.github.com/rkmax/snake/master/assets/snake_title_50.png)
 -----
 
 Este juego es un clon del popular juego, esta realizado en C++ y se hace uso de la libreria [SFML][1] para su desarrollo.
