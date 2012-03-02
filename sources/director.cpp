@@ -1,5 +1,5 @@
 
-#include "director.h"
+#include "screen.h"
 
 namespace snake {
     Director *Director::instance = 0;
@@ -23,10 +23,5 @@ namespace snake {
     void Director::Destroy()
     {
         if (instance != 0) delete instance;
-    }
-
-    void Director::run()
-    {
-
     }
 }

@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
+#include "director.h"
 
 using namespace std;
 using namespace sf;
@@ -9,9 +10,9 @@ using namespace sf;
 #define _SCREEN_H
 
 namespace snake {
-    class Director;
+
     /**
-     * Clase abstracta que maneja las pantallas
+     * Clase abstracta que maneja la logica de una pantalla
      * Cualquier pantalla del juego debe derivar de esta
      * ya que asi la logica del juego se encuentra completamente organizada
     **/

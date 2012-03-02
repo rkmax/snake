@@ -1,10 +1,17 @@
-#include <stdlib.h>
-#include "screen.h"
 #ifndef _DIRECTOR_H_
 #define _DIRECTOR_H_
 
-namespace snake {
+using namespace sf;
 
+namespace snake {
+    // Definicion previa de Screen para evitar dependencias circulares
+    class Screen;
+
+    /**
+     * Clase singleton que maneja las pantallas
+     * Se encarga de centralizar los recursos que manejan la diferentes pantallas
+     * del juego como son las Entradas de teclado
+    **/
     class Director
     {
     public:
@@ -17,7 +24,6 @@ namespace snake {
         Screen *getCurrentScreen(){ return screen;}
         void setInputManager(const sf::Input &in){ input = &in;}
         Input const& getInputManager() const { return *input; }
-        void run();
     private:
 
         Screen *screen;

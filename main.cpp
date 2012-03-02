@@ -24,7 +24,6 @@ int main(int argc, char const *argv[])
         {
             // LLama ejecuta la logica de la pantalla actual
             director->getCurrentScreen()->run();
-            director->run();
 
             // TODO: Pendiente configurar que la salida de la aplicacion sea manejado por Director
 
