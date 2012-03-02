@@ -25,8 +25,6 @@ int main(int argc, char const *argv[])
             // LLama ejecuta la logica de la pantalla actual
             director->getCurrentScreen()->run();
 
-            // TODO: Pendiente configurar que la salida de la aplicacion sea manejado por Director
-
             if (event.Type == Event::Closed) {
                 App.Close();
             }

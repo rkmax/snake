@@ -15,23 +15,68 @@ namespace snake {
     class Director
     {
     public:
+        /**
+         * Metodo que devuelve la instancia de director, si exta no existe, crea
+         * una nueva
+        **/
         static Director &Instance();
+
+        /**
+         * Destructur de la clase
+        **/
         virtual ~Director(){};
 
+        /**
+         * Cambia la pantalla actual que maneja el director
+        **/
         void setCurrentScreen(Screen &scr){
              screen = &scr;
         }
+
+        /**
+         * Devuelve la pantalla actual del director
+        **/
         Screen *getCurrentScreen(){ return screen;}
+
+        /**
+         * Define el Gestor de entradas de la aplicacion
+         * este es usado por la pantalla que se este administrando actualmente
+        **/
         void setInputManager(const sf::Input &in){ input = &in;}
+
+        /**
+         * Devuelve el Gestor de entradas
+        **/
         Input const& getInputManager() const { return *input; }
     private:
-
+        /**
+         * Un puntero hacia la pantalla actual
+         */
         Screen *screen;
+
+        /**
+         * Un puntero hacia el Gestor de entradas de la aplicacion
+         */
         const Input *input;
 
+        /**
+         * Mantiene la unica instancia del director de ventanas
+         */
         static Director *instance;
+
+        /**
+         * Se asegura de destruir la instancia al salir de la aplicacion
+        **/
         static void Destroy();
+
+        /**
+         * Constructur auxiliar
+        **/
         Director(const Director& d){}
+
+        /**
+         * Constructur por defecto de la clase
+        **/
         Director();
     };
 }
