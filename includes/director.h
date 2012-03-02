@@ -22,6 +22,7 @@ namespace snake {
         static Director *instance;
         static void Destroy();
         Director(const Director& d){}
+        Director();
     };
 }
 #endif

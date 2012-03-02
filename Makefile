@@ -4,7 +4,7 @@ BUILD = snake
 
 LDFLAGS =
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
-CXXFLAGS = -Wall
+CXXFLAGS = -Wall -I./includes
 RM = rm -rf
 OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o director.o
 

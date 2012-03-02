@@ -1,5 +1,5 @@
 
-#include "../includes/director.h"
+#include "director.h"
 
 namespace snake {
     Director *Director::instance = 0;
