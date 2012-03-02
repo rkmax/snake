@@ -8,7 +8,10 @@ namespace snake {
 
     WelcomeScreen::WelcomeScreen()
     {
-
+        sf::Image im;
+        if(im.LoadFromFile("./assets/snake_background.png")) {
+            background = sf::Sprite(im);
+        }
     }
 
     string WelcomeScreen::getName()
