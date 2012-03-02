@@ -8,25 +8,29 @@ int main(int argc, char const *argv[])
 {
     RenderWindow App(VideoMode(640, 480), "Snake");
 
-    Director director = Director::Instance();
+    Director *director = &Director::Instance();
 
-    Screen *initialScreen = new WelcomeScreen();
+    WelcomeScreen *initialScreen = new WelcomeScreen();
 
-    director->setCurrentScreen(initialScreen);
+    director->setCurrentScreen(*initialScreen);
 
     while(App.IsOpened())
     {
-        Event Event;
+        Event event;
 
-        while(App.GetEvent(Event))
+        while(App.GetEvent(event))
         {
-            if (Event.Type == Event::Closed) {
+            // LLama ejecuta la logica de la pantalla actual
+            director->getCurrentScreen()->run(event);
+
+            // TODO: Pendiente configurar que la salida de la aplicacion sea manejado por Director
+
+            if (event.Type == Event::Closed) {
                 App.Close();
             }
         }
 
         App.Clear();
-        App.Draw(Welcome);
         App.Display();
 
     }

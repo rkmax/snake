@@ -1,7 +1,9 @@
-#include <iostream>
+#include <SFML/Graphics.hpp>
 #include <string>
+#include <iostream>
 
 using namespace std;
+using namespace sf;
 
 #ifndef _SCREEN_H
 #define _SCREEN_H
@@ -18,12 +20,12 @@ namespace snake {
     public:
         Screen(){};
         virtual ~Screen(){};
-        virtual void run();
+        virtual void run(Event ev);
     private:
-        virtual string getName();
-        virtual void checkInput();
-        virtual void updateLogic();
-        virtual void drawThis();
+        virtual string getName() = 0;
+        virtual void checkInput() = 0;
+        virtual void updateLogic() = 0;
+        virtual void drawThis() = 0;
     };
 
     /**

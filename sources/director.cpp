@@ -2,7 +2,7 @@
 #include "../includes/director.h"
 
 namespace snake {
-    Director* Director::instance = 0;
+    Director *Director::instance = 0;
 
     Director &Director::Instance()
     {
@@ -23,16 +23,5 @@ namespace snake {
     void Director::Destroy()
     {
         if (instance != 0) delete instance;
-    }
-
-
-    void Director::setCurrentScreen(Screen &screen)
-    {
-
-    }
-
-    Screen *Director::getCurrentScreen()
-    {
-        return screen;
     }
 }

@@ -11,15 +11,16 @@ namespace snake {
         static Director &Instance();
         virtual ~Director(){};
 
-        void setCurrentScreen(Screen &screen);
-        Screen *getCurrentScreen();
+        void setCurrentScreen(Screen &scr){ screen = &scr;}
+        Screen *getCurrentScreen(){ return screen;}
+        void setInputManager(Input &in){ input = &in; }
     private:
 
         Screen *screen;
+        Input *input;
 
         static Director *instance;
         static void Destroy();
-        Director();
         Director(const Director& d){}
     };
 }

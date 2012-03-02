@@ -3,7 +3,10 @@
 
 namespace snake {
 
-    void Screen::run() {
-        std::cout << "I'm running!" << std::endl;
+    void Screen::run(Event ev) {
+
+        checkInput();
+        updateLogic();
+        drawThis();
     }
 }
