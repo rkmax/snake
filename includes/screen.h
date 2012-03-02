@@ -79,9 +79,14 @@ namespace snake {
     class WelcomeScreen: public Screen
     {
     public:
-        WelcomeScreen(){};
+        WelcomeScreen();
         virtual ~WelcomeScreen(){};
     private:
+
+        sf::Sprite background;
+        sf::Sprite title;
+        sf::Font comicFont;
+
         string getName();
         void checkInput();
         void updateLogic();

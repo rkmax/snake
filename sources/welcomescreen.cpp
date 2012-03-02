@@ -1,8 +1,15 @@
 
 #include "screen.h"
+#include "snake.h"
+
+using namespace std;
 
 namespace snake {
 
+    WelcomeScreen::WelcomeScreen()
+    {
+
+    }
 
     string WelcomeScreen::getName()
     {
