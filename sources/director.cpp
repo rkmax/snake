@@ -18,10 +18,16 @@ namespace snake {
     Director::Director()
     {
         screen = 0;
+        window = new RenderWindow(VideoMode(640, 480), "Snake");
     }
 
     void Director::Destroy()
     {
         if (instance != 0) delete instance;
+    }
+
+    void Director::start()
+    {
+
     }
 }

@@ -35,13 +35,13 @@ namespace snake {
     void WelcomeScreen::checkInput()
     {
         int t_options = sizeof(options) - 1;
-        if (director->getInputManager().IsKeyDown(sf::Key::Down))
+        if (director->getWindow().GetInput().IsKeyDown(sf::Key::Down))
         {
             ++option;
             if (option > t_options ) option = 0;
 
         }
-        if (director->getInputManager().IsKeyDown(sf::Key::Up))
+        if (director->getWindow().GetInput().IsKeyDown(sf::Key::Up))
         {
             --option;
             if (option < 0 ) option = t_options;

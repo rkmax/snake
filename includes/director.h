@@ -42,22 +42,25 @@ namespace snake {
          * Define el Gestor de entradas de la aplicacion
          * este es usado por la pantalla que se este administrando actualmente
         **/
-        void setInputManager(const sf::Input &in){ input = &in;}
+        void setWindow(const sf::RenderWindow *win){ window = win;}
+
+        /**
+         * Inicial el director que desencadena toda la logica de la aplicacion
+        **/
+        void start();
 
         /**
          * Devuelve el Gestor de entradas
         **/
-        Input const& getInputManager() const { return *input; }
+        RenderWindow const& getWindow() const { return *window; }
     private:
         /**
          * Un puntero hacia la pantalla actual
          */
         Screen *screen;
 
-        /**
-         * Un puntero hacia el Gestor de entradas de la aplicacion
-         */
-        const Input *input;
+
+        const RenderWindow* window;
 
         /**
          * Mantiene la unica instancia del director de ventanas
