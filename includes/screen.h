@@ -86,6 +86,11 @@ namespace snake {
         sf::Sprite background;
         sf::Sprite title;
         sf::Font comicFont;
+        sf::Color normalColor;
+        sf::Color selectedColor;
+
+        int option;
+        std::string options[3];
 
         string getName();
         void checkInput();

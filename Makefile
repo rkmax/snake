@@ -6,7 +6,7 @@ LDFLAGS =
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
 CXXFLAGS = -Wall -I./includes
 RM = rm -rf
-OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o director.o snake.o
+OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o directorapp.o director.o snake.o
 
 OBJECTS =  main.o $(addprefix $(OBJ_DIR), $(OBJS))
 
@@ -15,7 +15,7 @@ SRC_DIR = sources/
 
 .PHONY: clean
 
-all: clean $(BUILD)
+all: $(BUILD)
 
 $(BUILD): $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o $(BUILD) $(LDLIBS) $(OBJECTS)
