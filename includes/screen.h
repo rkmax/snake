@@ -85,15 +85,8 @@ namespace snake {
         WelcomeScreen();
         virtual ~WelcomeScreen(){};
     private:
-        sf::Font comicFont;
-        sf::Color normalColor;
-        sf::Color selectedColor;
-
         sf::Image backgroundImage;
         sf::Sprite backgroundSprite;
-
-        int option;
-        std::string options[3];
 
         string getName();
         void checkInput();

@@ -8,11 +8,6 @@ namespace snake {
 
     WelcomeScreen::WelcomeScreen()
     {
-        normalColor = sf::Color(216, 59, 5);
-        selectedColor = sf::Color(251, 237, 11);
-
-        option = 0;
-
         if(backgroundImage.LoadFromFile("assets/snake_background.png")) {
             backgroundSprite.SetImage(backgroundImage);
         }
@@ -25,12 +20,13 @@ namespace snake {
 
     void WelcomeScreen::checkInput()
     {
-        option = 0;
+
+        //TODO: Directivas para el menu
         if(director->application.GetInput().IsKeyDown(sf::Key::Down)) {
-            option++;
+
         }
         if(director->application.GetInput().IsKeyDown(sf::Key::Up)) {
-            option--;
+
         }
     }
 
