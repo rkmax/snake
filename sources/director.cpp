@@ -19,7 +19,13 @@ namespace snake {
     Director::Director()
     {
         screen = 0;
-        application.Create(sf::VideoMode(640, 480), "Snake");
+
+        sf::WindowSettings Settings;
+        Settings.DepthBits         = 24; // Request a 24 bits depth buffer
+        Settings.StencilBits       = 8;  // Request a 8 bits stencil buffer
+        Settings.AntialiasingLevel = 2;  // Request 2 levels of antialiasing
+        application.Create(sf::VideoMode(640, 480), "Snake", sf::Style::Close, Settings);
+        application.SetFramerateLimit(60);
     }
 
     void Director::Destroy()

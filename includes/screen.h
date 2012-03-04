@@ -46,6 +46,9 @@ namespace snake {
          * Puntero hacia el director de pantallas
         **/
         Director *director;
+
+        static bool loadBackground(const std::string& FilePath);
+
     private:
         /**
          * Metodo virtual que devuelve una cadena con el nombre de la pantalla
@@ -82,12 +85,12 @@ namespace snake {
         WelcomeScreen();
         virtual ~WelcomeScreen(){};
     private:
-
-        sf::Sprite background;
-        sf::Sprite title;
         sf::Font comicFont;
         sf::Color normalColor;
         sf::Color selectedColor;
+
+        sf::Image backgroundImage;
+        sf::Sprite backgroundSprite;
 
         int option;
         std::string options[3];

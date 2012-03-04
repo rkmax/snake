@@ -8,23 +8,14 @@ namespace snake {
 
     WelcomeScreen::WelcomeScreen()
     {
-        sf::Image im;
-        if(im.LoadFromFile("./assets/snake_background.png")) {
-            background = sf::Sprite(im);
-        }
-
-        if(im.LoadFromFile("./assets/snake_title.png")) {
-            title = sf::Sprite(im);
-        }
-
         normalColor = sf::Color(216, 59, 5);
         selectedColor = sf::Color(251, 237, 11);
 
         option = 0;
 
-        options[0] = "Nuevo Juego";
-        options[1] = "Puntuaciones";
-        options[2] = "Salir";
+        if(backgroundImage.LoadFromFile("assets/snake_background.png")) {
+            backgroundSprite.SetImage(backgroundImage);
+        }
     }
 
     string WelcomeScreen::getName()
@@ -34,14 +25,12 @@ namespace snake {
 
     void WelcomeScreen::checkInput()
     {
-        if (director->application.GetInput().IsKeyDown(sf::Key::Down))
-        {
-            std::cout << "Pulsada tecla Flecha abajo" << std::endl;
-
+        option = 0;
+        if(director->application.GetInput().IsKeyDown(sf::Key::Down)) {
+            option++;
         }
-        if (director->application.GetInput().IsKeyDown(sf::Key::Up))
-        {
-            std::cout << "Pulsada tecla Flecha arriba" << std::endl;
+        if(director->application.GetInput().IsKeyDown(sf::Key::Up)) {
+            option--;
         }
     }
 
@@ -52,6 +41,6 @@ namespace snake {
 
     void WelcomeScreen::drawThis()
     {
-        director->application.Draw(background);
+        director->application.Draw(backgroundSprite);
     }
 }
