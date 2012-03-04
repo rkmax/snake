@@ -29,25 +29,16 @@ namespace snake {
         /**
          * Cambia la pantalla actual que maneja el director
         **/
-        void setCurrentScreen(Screen &scr){
-             screen = &scr;
-        }
+        void setCurrentScreen(Screen &scr);
 
         /**
          * Devuelve la pantalla actual del director
         **/
-        Screen *getCurrentScreen(){ return screen;}
+        Screen *getCurrentScreen(){ return screen; }
 
-        /**
-         * Define el Gestor de entradas de la aplicacion
-         * este es usado por la pantalla que se este administrando actualmente
-        **/
-        void setInputManager(const sf::Input &in){ input = &in;}
+        void start();
 
-        /**
-         * Devuelve el Gestor de entradas
-        **/
-        Input const& getInputManager() const { return *input; }
+        RenderWindow application;
     private:
         /**
          * Un puntero hacia la pantalla actual

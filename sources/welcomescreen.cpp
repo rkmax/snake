@@ -34,17 +34,14 @@ namespace snake {
 
     void WelcomeScreen::checkInput()
     {
-        int t_options = sizeof(options) - 1;
-        if (director->getInputManager().IsKeyDown(sf::Key::Down))
+        if (director->application.GetInput().IsKeyDown(sf::Key::Down))
         {
-            ++option;
-            if (option > t_options ) option = 0;
+            std::cout << "Pulsada tecla Flecha abajo" << std::endl;
 
         }
-        if (director->getInputManager().IsKeyDown(sf::Key::Up))
+        if (director->application.GetInput().IsKeyDown(sf::Key::Up))
         {
-            --option;
-            if (option < 0 ) option = t_options;
+            std::cout << "Pulsada tecla Flecha arriba" << std::endl;
         }
     }
 
@@ -55,6 +52,6 @@ namespace snake {
 
     void WelcomeScreen::drawThis()
     {
-
+        director->application.Draw(background);
     }
 }
