@@ -77,30 +77,6 @@ namespace snake {
     };
 
     /**
-     * Clase que maneja la ventana principal del juego
-     * muestra el menu principal y todas las opciones que derivan de él
-    **/
-    class WelcomeScreen: public Screen
-    {
-    public:
-        WelcomeScreen();
-        virtual ~WelcomeScreen(){};
-    private:
-        sf::Image backgroundImage;
-        sf::Sprite backgroundSprite;
-
-        sf::Image titleImage;
-        sf::Sprite titleSprite;
-
-        snake::Menu* menu;
-
-        string getName();
-        void checkInput();
-        void updateLogic();
-        void drawThis();
-    };
-
-    /**
      * Clase que mantiene maneja la ventana de juego
      * Aqui se muestran Todos los niveles del juego
     **/

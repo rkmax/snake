@@ -1,5 +1,5 @@
 
-#include "screen.h"
+#include "welcomescreen.h"
 #include "snake.h"
 
 using namespace std;
