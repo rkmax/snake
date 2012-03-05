@@ -3,6 +3,7 @@
 
 #include <list>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 
@@ -23,6 +24,9 @@ namespace snake {
         sf::Color normalColor;
         sf::Color selectedColor;
         sf::Font font;
+
+        sf::SoundBuffer buffer;
+        sf::Sound changeSound;
 
         unsigned int currentOption;
 

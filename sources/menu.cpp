@@ -12,6 +12,11 @@ namespace snake {
 
         font.LoadFromFile("assets/comic.ttf");
 
+        if (buffer.LoadFromFile("assets/menu_change_option.ogg")) {
+            changeSound.SetBuffer(buffer);
+            changeSound.SetLoop(false);
+        }
+
         currentOption = 0;
 
         for (list<string>::iterator i = opt.begin(); i != opt.end(); ++i)
@@ -29,6 +34,7 @@ namespace snake {
         if(currentOption > options.size() - 1){
             currentOption = 0;
         }
+        changeSound.Play();
 
     }
 
@@ -40,6 +46,7 @@ namespace snake {
         } else {
             currentOption--;
         }
+        changeSound.Play();
     }
 
     string Menu::getOption()
