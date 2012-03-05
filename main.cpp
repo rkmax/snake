@@ -9,7 +9,6 @@ int main(int argc, char const *argv[])
 
     try {
         Director *director = &Director::Instance();
-
         director->start();
     } catch(char* err) {
         std::cerr << err << std::endl;
