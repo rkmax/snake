@@ -21,6 +21,7 @@ namespace snake {
         sf::Sprite titleSprite;
 
         snake::Menu* menu;
+        bool selected;
 
         string getName();
         void checkInput();
