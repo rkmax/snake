@@ -48,7 +48,10 @@ namespace snake {
         **/
         Director *director;
 
-        static bool loadBackground(const std::string& FilePath);
+        /**
+         * Determina si la pantalla esta ejecutandose
+        **/
+        bool isRunning;
 
     private:
         /**

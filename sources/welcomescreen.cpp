@@ -18,6 +18,8 @@ namespace snake {
 
         titleSprite.Move(50.f, 50.f);
 
+        isRunning = true;
+
         list<string> opciones;
         opciones.push_back("Nuevo juego");
         opciones.push_back("Puntajes");
@@ -37,13 +39,17 @@ namespace snake {
         } else if (director->application.GetInput().IsKeyDown(sf::Key::Up)) {
             menu->prevOption();
         } else if (director->application.GetInput().IsKeyDown(sf::Key::Return)) {
-            std::cout << "Has seleccionado la opcion: " << menu->getOption() << std::endl;
+            if (menu->getOption() == "Salir") {
+                isRunning = false;
+            }
         }
     }
 
     void WelcomeScreen::updateLogic()
     {
-
+        if (!isRunning) {
+            director->application.Close();
+        }
     }
 
     void WelcomeScreen::drawThis()
