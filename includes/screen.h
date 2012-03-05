@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include "director.h"
+#include "menu.h"
 
 using namespace std;
 using namespace sf;
@@ -87,6 +88,8 @@ namespace snake {
     private:
         sf::Image backgroundImage;
         sf::Sprite backgroundSprite;
+
+        snake::Menu* menu;
 
         string getName();
         void checkInput();

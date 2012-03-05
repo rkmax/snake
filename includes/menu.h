@@ -10,18 +10,23 @@ namespace snake {
     class Menu
     {
     public:
-        Menu(const list<string>& options);
-        ~Menu();
+        Menu();
+        Menu(list<string>);
+        ~Menu(){}
         void nextOption();
         void prevOption();
+
+        void draw(sf::RenderWindow&);
+
+        string getOption();
     private:
         sf::Color normalColor;
         sf::Color selectedColor;
         sf::Font font;
 
-        int currentOption;
+        unsigned int currentOption;
 
-        list<sf::Text> options;
+        list<sf::String> options;
     };
 }
 #endif

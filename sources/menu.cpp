@@ -1,18 +1,23 @@
 
+#include "menu.h"
 
 namespace snake {
-    Menu::Menu(const list<string>& options)
+
+    Menu::Menu(){}
+
+    Menu::Menu(list<string> opt)
     {
         normalColor = sf::Color(216, 59, 5);
         selectedColor = sf::Color(251, 237, 11);
 
-        font.LoadfromFile("assets/commic.ttf");
+        font.LoadFromFile("assets/comic.ttf");
 
+        currentOption = 0;
 
-        for (list<string>::iterator i = options.begin(); i != options.end(); ++i)
+        for (list<string>::iterator i = opt.begin(); i != opt.end(); ++i)
         {
-            sf::Text op(i, font, 18)
-            op.SetColor((i == options.begin()) ? selectedColor : normalColor);
+            sf::String op(*i, font, 50);
+            op.SetColor((i == opt.begin()) ? selectedColor : normalColor);
             options.push_back(op);
         }
 
@@ -20,11 +25,56 @@ namespace snake {
 
     void Menu::nextOption()
     {
+        currentOption++;
+        if(currentOption > options.size() - 1){
+            currentOption = 0;
+        }
 
     }
 
     void Menu::prevOption()
     {
 
+        if(currentOption == 0){
+            currentOption = options.size() - 1;
+        } else {
+            currentOption--;
+        }
+    }
+
+    string Menu::getOption()
+    {
+        unsigned int counter = 0;
+        string opText;
+        for (list<sf::String>::iterator i = options.begin();
+                i != options.end(); ++i)
+        {
+            if (counter == currentOption){
+                opText = (*i).GetText();
+            }
+
+            counter++;
+        }
+
+        return opText;
+    }
+
+    void Menu::draw(sf::RenderWindow& app)
+    {
+        unsigned int counter = 0;
+
+        for (list<sf::String>::iterator i = options.begin();
+                i != options.end(); ++i)
+        {
+            if (counter == currentOption)
+            {
+                (*i).SetColor(selectedColor);
+            } else {
+                (*i).SetColor(normalColor);
+            }
+            app.Draw(*i);
+
+            counter++;
+        }
     }
 }

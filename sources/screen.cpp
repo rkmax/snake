@@ -12,10 +12,9 @@ namespace snake {
             sf::Event event;
 
             while(director->application.GetEvent(event)){
-
+                checkInput();
             }
 
-            checkInput();
             updateLogic();
 
             director->application.Clear();
