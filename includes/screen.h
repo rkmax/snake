@@ -89,6 +89,9 @@ namespace snake {
         sf::Image backgroundImage;
         sf::Sprite backgroundSprite;
 
+        sf::Image titleImage;
+        sf::Sprite titleSprite;
+
         snake::Menu* menu;
 
         string getName();

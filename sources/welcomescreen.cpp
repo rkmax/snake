@@ -12,8 +12,15 @@ namespace snake {
             backgroundSprite.SetImage(backgroundImage);
         }
 
+        if(titleImage.LoadFromFile("assets/snake_title.png")) {
+            titleSprite.SetImage(titleImage);
+        }
+
+        titleSprite.Move(50.f, 50.f);
+
         list<string> opciones;
         opciones.push_back("Nuevo juego");
+        opciones.push_back("Puntajes");
         opciones.push_back("Salir");
         menu = new Menu(opciones);
     }
@@ -25,17 +32,12 @@ namespace snake {
 
     void WelcomeScreen::checkInput()
     {
-
-        //TODO: Directivas para el menu
-        if(director->application.GetInput().IsKeyDown(sf::Key::Down)) {
+        if (director->application.GetInput().IsKeyDown(sf::Key::Down)) {
             menu->nextOption();
-        }
-        if(director->application.GetInput().IsKeyDown(sf::Key::Up)) {
+        } else if (director->application.GetInput().IsKeyDown(sf::Key::Up)) {
             menu->prevOption();
-        }
-
-        if(director->application.GetInput().IsKeyDown(sf::Key::Return)) {
-            std::cout << "Has seleccionado la opcion" << menu->getOption() << std::endl;
+        } else if (director->application.GetInput().IsKeyDown(sf::Key::Return)) {
+            std::cout << "Has seleccionado la opcion: " << menu->getOption() << std::endl;
         }
     }
 
@@ -47,6 +49,7 @@ namespace snake {
     void WelcomeScreen::drawThis()
     {
         director->application.Draw(backgroundSprite);
+        director->application.Draw(titleSprite);
         menu->draw(director->application);
     }
 }

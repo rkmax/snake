@@ -62,16 +62,20 @@ namespace snake {
     void Menu::draw(sf::RenderWindow& app)
     {
         unsigned int counter = 0;
+        sf::FloatRect lastPos;
 
         for (list<sf::String>::iterator i = options.begin();
                 i != options.end(); ++i)
         {
             if (counter == currentOption)
             {
-                (*i).SetColor(selectedColor);
+                i->SetColor(selectedColor);
             } else {
-                (*i).SetColor(normalColor);
+                i->SetColor(normalColor);
             }
+
+            i->SetPosition(60.f, 200 + (58.f * counter));
+
             app.Draw(*i);
 
             counter++;
