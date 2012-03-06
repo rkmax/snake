@@ -81,7 +81,18 @@ namespace snake {
         sf::Image imHead;
         sf::Sprite spHead;
 
-        sf::Rect<int> headDir[4];
+        sf::Image imChunk;
+        sf::Sprite spChunk;
+
+        sf::Image imTurn;
+        sf::Sprite spTurn;
+
+        sf::Image imTail;
+        sf::Sprite spTail;
+
+        sf::IntRect headTailDir[4];
+        sf::IntRect chunkDir[4];
+        sf::IntRect turnDir[4];
     };
 }
 #endif
