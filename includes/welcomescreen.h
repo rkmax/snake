@@ -2,6 +2,7 @@
 #define _WELCOME_SCREEN_H_
 
 #include <screen.h>
+#include "menu.h"
 
 namespace snake {
     /**

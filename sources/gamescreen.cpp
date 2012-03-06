@@ -2,7 +2,10 @@
 #include "gamescreen.h"
 
 namespace snake {
-    GameScreen::GameScreen(){}
+    GameScreen::GameScreen()
+    {
+
+    }
 
     string GameScreen::getName()
     {
@@ -21,6 +24,6 @@ namespace snake {
 
     void GameScreen::drawThis()
     {
-
+        player.draw(director->application);
     }
 }

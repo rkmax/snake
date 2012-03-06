@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -11,38 +12,76 @@ namespace snake {
      * Direcciones de Snake
     **/
     namespace Dir {
-        const int UP = 1;
-        const int DOWN = 3;
+        const int UP = 0;
+        const int DOWN = 1;
         const int LEFT = 2;
-        const int RIGHT = 4;
+        const int RIGHT = 3;
     }
+
+    class Position {
+    public:
+        Position();
+        int X;
+        int Y;
+        const Position &operator=(const Position &npos)
+        {
+            if(this == &npos) {
+                return *this;
+            }
+            (*this).X = npos.X;
+            (*this).Y = npos.Y;
+
+            return *this;
+        }
+
+        const Position &operator+(const Position &npos)
+        {
+            (*this).X += npos.X;
+            (*this).Y += npos.Y;
+
+            return *this;
+        }
+
+        const Position &operator-(const Position &npos)
+        {
+            (*this).X -= npos.X;
+            (*this).Y -= npos.Y;
+
+            return *this;
+        }
+
+    };
 
     /**
      * Es una seccion de la serpiente
     **/
-    class SnakeTail
+    class SnakeChunk
     {
     public:
-        SnakeTail(){
-            std::cout << "Soy una nueva pieza" << endl;
-        }
-        virtual void changeDirection(const int dir){ direction = dir; }
-    private:
-        int direction;
+        SnakeChunk(){}
+        Position pos;
     };
 
     /**
      * Es la entidad que controlamos en el juego
     **/
-    class Snake: public SnakeTail    {
+    class Snake: public SnakeChunk    {
     public:
         Snake();
-        Snake(unsigned int initial_tail);
+
+        void move();
+        void changeDirection(const int dir);
+        void grow();
+        void shrink();
+        void draw(sf::RenderWindow&);
     private:
-        int velocity;
         int direction;
-        int lives;
-        std::list <SnakeTail*> tail;
+        list<SnakeChunk> chunks;
+
+        sf::Image imHead;
+        sf::Sprite spHead;
+
+        sf::Rect<int> headDir[4];
     };
 }
 #endif

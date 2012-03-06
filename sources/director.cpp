@@ -1,5 +1,6 @@
 
 #include "welcomescreen.h"
+#include "gamescreen.h"
 #include "director.h"
 
 namespace snake {
@@ -41,7 +42,8 @@ namespace snake {
 
     void Director::start()
     {
-        screen = new WelcomeScreen();
+        screen = new GameScreen();
+
         screen->setDirector(this);
 
         screen->run();

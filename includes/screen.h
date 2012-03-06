@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include "director.h"
-#include "menu.h"
 
 using namespace std;
 using namespace sf;

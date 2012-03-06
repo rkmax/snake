@@ -1,6 +1,7 @@
 #ifndef _GAME_SCREEN_H
 #define _GAME_SCREEN_H
 #include "screen.h"
+#include "snake.h"
 
 namespace snake {
     /**
@@ -13,6 +14,8 @@ namespace snake {
         GameScreen();
         virtual ~GameScreen(){};
     private:
+        Snake player;
+
         string getName();
         void checkInput();
         void updateLogic();
