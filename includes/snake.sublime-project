@@ -1,9 +1,0 @@
-{
-	"folders":
-	[
-		{
-			"path": "/home/julian/Code/cpp/sfml/snake",
-            "folder_exclude_patterns": ["objects"]
-		}
-	]
-}

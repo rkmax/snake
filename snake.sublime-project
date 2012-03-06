@@ -1,0 +1,23 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"make",
+				"$project_path"
+			],
+			"name": "My Project"
+		}
+	],
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"objects"
+			],
+			"path": "/home/julian/Code/cpp/sfml/snake"
+		}
+	]
+}

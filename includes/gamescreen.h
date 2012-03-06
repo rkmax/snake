@@ -15,6 +15,7 @@ namespace snake {
         virtual ~GameScreen(){};
     private:
         Snake player;
+        int direction;
 
         string getName();
         void checkInput();

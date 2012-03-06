@@ -21,6 +21,7 @@ namespace snake {
     class Position {
     public:
         Position();
+        Position(int, int);
         int X;
         int Y;
         const Position &operator=(const Position &npos)
@@ -58,41 +59,42 @@ namespace snake {
     class SnakeChunk
     {
     public:
-        SnakeChunk(){}
+        SnakeChunk()
+        {
+            spChunk.SetScale(1.f/4.f, 1.f/4.f);
+        }
         Position pos;
+        Pisition npos;
+        int direction;
+        sf::Sprite spChunk;
     };
 
     /**
      * Es la entidad que controlamos en el juego
     **/
-    class Snake: public SnakeChunk    {
+    class Snake {
     public:
         Snake();
 
-        void move();
+        void move(int);
         void changeDirection(const int dir);
         void grow();
         void shrink();
         void draw(sf::RenderWindow&);
+
+        int velocity;
     private:
-        int direction;
         list<SnakeChunk> chunks;
 
         sf::Image imHead;
-        sf::Sprite spHead;
-
         sf::Image imChunk;
-        sf::Sprite spChunk;
-
         sf::Image imTurn;
-        sf::Sprite spTurn;
-
         sf::Image imTail;
-        sf::Sprite spTail;
 
         sf::IntRect headTailDir[4];
         sf::IntRect chunkDir[4];
         sf::IntRect turnDir[4];
+        int directions[4];
     };
 }
 #endif

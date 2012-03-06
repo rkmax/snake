@@ -5,109 +5,117 @@ namespace snake {
 
     Position::Position(){}
 
+    Position::Position(int x, int y){
+        X = x;
+        Y = y;
+    }
+
     Snake::Snake()
     {
-        if(imHead.LoadFromFile("assets/snake_head.png")) {
-            spHead.SetImage(imHead);
-            spHead.SetScaleX(1.f/4.f);
-            spHead.SetScaleY(1.f/4.f);
-        }
+        imHead.LoadFromFile("assets/snake_head.png");
+        imChunk.LoadFromFile("assets/snake_chunk.png");
+        imTurn.LoadFromFile("assets/snake_turn.png");
+        imTail.LoadFromFile("assets/snake_tail.png");
 
-        if(imChunk.LoadFromFile("assets/snake_chunk.png")) {
-            spChunk.SetImage(imChunk);
-            spChunk.SetScaleX(1.f/4.f);
-            spChunk.SetScaleY(1.f/4.f);
-        }
-
-        if(imTurn.LoadFromFile("assets/snake_turn.png")) {
-            spTurn.SetImage(imTurn);
-            spTurn.SetScaleX(1.f/4.f);
-            spTurn.SetScaleY(1.f/4.f);
-        }
-
-        if(imTail.LoadFromFile("assets/snake_tail.png")) {
-            spTail.SetImage(imTail);
-            spTail.SetScaleX(1.f/4.f);
-            spTail.SetScaleY(1.f/4.f);
-        }
-
-        // Chunk sprite sheet
+        //Sprite sheets
         for (int i = Dir::UP; i <= Dir::RIGHT; ++i)
         {
-            headTailDir[i] = sf::IntRect(i * 256, 0, 256 + (i * 256), 256);
-        }
-
-        // Chunks sprite sheet
-        for (int i = Dir::UP; i <= Dir::LEFT; i+=2)
-        {
-            chunkDir[i] = sf::IntRect(i * 256, 0, 256 + (i * 256), 256);
+            chunkDir[i] = headTailDir[i] = sf::IntRect(i * 256, 0, 256 + (i * 256), 256);
+            directions[i] = (i % 2 == 0) ? -1 : 1;
         }
         chunkDir[1] = chunkDir[0];
         chunkDir[3] = chunkDir[2];
 
-        // Tail sprite sheet is same head
-
-
         // Initial Chunks
-        for (int i = 3; i > 0; --i)
+        for (int i = 1; i <= 3; i++)
         {
             SnakeChunk ch;
-            ch.pos.X = 64;
-            ch.pos.Y = i * 64;
-            chunks.push_back(ch);
+            ch.pos = Position(1, i * 64);
+            ch.direction = Dir::DOWN;
+            chunks.push_front(ch);
         }
 
+        list<SnakeChunk>::iterator it;
+        list<SnakeChunk>::iterator end;
+        it = chunks.begin();
+        end = chunks.end();
 
-
-        // Initial Direction
-        direction = Dir::DOWN;
+        // Initial
+        velocity = 5;
 
     }
 
     void Snake::draw(sf::RenderWindow& app)
     {
-        std::list<SnakeChunk>::iterator i;
 
+        list<SnakeChunk>::iterator it;
 
-        for (i = chunks.begin(); i != chunks.end(); ++i)
-        {
-            if(i == chunks.begin()) {
-                spHead.SetX(i->pos.X);
-                spHead.SetY(i->pos.Y);
-                spHead.SetSubRect(headTailDir[direction]);
-                app.Draw(spHead);
+        for(it = chunks.begin(); it != chunks.end(); ++it) {
 
-            } else if(i == chunks.end()) {
-                spTail.SetX(i->pos.X);
-                spTail.SetY(i->pos.Y);
-                spTail.SetSubRect(headTailDir[direction]);
-                app.Draw(spTail);
+            if(it == chunks.begin()) {
+                it->spChunk.SetImage(imHead);
+                it->spChunk.SetSubRect(headTailDir[it->direction]);
+            } else if (it == (--chunks.end())) {
+                it->spChunk.SetImage(imTail);
+                it->spChunk.SetSubRect(headTailDir[it->direction]);
             } else {
-                spChunk.SetX(i->pos.X);
-                spChunk.SetY(i->pos.Y);
-                spChunk.SetSubRect(chunkDir[direction]);
-                app.Draw(spChunk);
+                it->spChunk.SetImage(imChunk);
+                it->spChunk.SetSubRect(chunkDir[it->direction]);
             }
+            it->spChunk.SetX(it->pos.X);
+            it->spChunk.SetY(it->pos.Y);
+            app.Draw(it->spChunk);
         }
     }
 
-    void Snake::move()
+    void Snake::move(int newDir)
     {
-        std::list<SnakeChunk>::iterator i;
+        std::list<SnakeChunk>::iterator it, prev;
 
-        Position tmp, tmp2;
-        for (i = chunks.begin(); i != chunks.end(); ++i)
+        chunks.begin()->direction = newDir;
+
+        for (it = chunks.begin(); it != chunks.end(); ++it)
         {
-            if(i == chunks.begin()) {
-                tmp.X = (*i).pos.X;
-                tmp.Y = (*i).pos.Y;
+            if(it == chunks.begin()) {
 
-            } else if(i == chunks.end()) {
-                (*i).pos = tmp;
+                if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
+                    it->pos.X += velocity * directions[it->direction];
+                }
+
+                if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
+                    it->pos.Y += velocity * directions[it->direction];
+                }
             } else {
-                tmp2 = (*i).pos;
-                (*i).pos = tmp;
-                tmp = tmp2;
+                prev = it;
+                --prev;
+                if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
+                    it->pos.X += velocity * directions[it->direction];
+                }
+
+                if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
+                    it->pos.Y += velocity * directions[it->direction];
+                }
+                if (it->direction == prev->direction ) {
+                    /*
+                    if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
+                        it->pos.X += velocity * directions[it->direction];
+                    }
+
+                    if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
+                        it->pos.Y += velocity * directions[it->direction];
+                    }*/
+                } else {
+                    /*
+                    if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
+                        it->pos.Y += velocity * directions[it->direction];
+                    }
+
+                    if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
+                        it->pos.X += velocity * directions[it->direction];
+                    }*/
+                    it->direction = prev->direction;
+                }
+
             }
         }
     }
