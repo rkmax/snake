@@ -14,8 +14,6 @@ OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o directorapp.o directo
 
 OBJECTS =  main.o $(addprefix $(OBJ_DIR), $(OBJS))
 
-
-
 .PHONY: clean $(BUILD)
 
 all: $(BUILD)

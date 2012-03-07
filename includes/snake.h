@@ -64,7 +64,7 @@ namespace snake {
             spChunk.SetScale(1.f/4.f, 1.f/4.f);
         }
         Position pos;
-        Pisition npos;
+        Position npos;
         int direction;
         sf::Sprite spChunk;
     };
