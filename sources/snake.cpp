@@ -35,11 +35,6 @@ namespace snake {
             chunks.push_front(ch);
         }
 
-        list<SnakeChunk>::iterator it;
-        list<SnakeChunk>::iterator end;
-        it = chunks.begin();
-        end = chunks.end();
-
         // Initial
         velocity = 5;
 
@@ -86,35 +81,6 @@ namespace snake {
                     it->pos.Y += velocity * directions[it->direction];
                 }
             } else {
-                prev = it;
-                --prev;
-                if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
-                    it->pos.X += velocity * directions[it->direction];
-                }
-
-                if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
-                    it->pos.Y += velocity * directions[it->direction];
-                }
-                if (it->direction == prev->direction ) {
-                    /*
-                    if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
-                        it->pos.X += velocity * directions[it->direction];
-                    }
-
-                    if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
-                        it->pos.Y += velocity * directions[it->direction];
-                    }*/
-                } else {
-                    /*
-                    if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
-                        it->pos.Y += velocity * directions[it->direction];
-                    }
-
-                    if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
-                        it->pos.X += velocity * directions[it->direction];
-                    }*/
-                    it->direction = prev->direction;
-                }
 
             }
         }
