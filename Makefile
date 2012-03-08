@@ -10,18 +10,19 @@ RM = rm -rf
 OBJ_DIR = objects/
 SRC_DIR = sources/
 
-OBJS = screen.o welcomescreen.o \
-	   gamescreen.o scorescreen.o directorapp.o \
-	   director.o snake.o menu.o
+OBJS = $(patsubst $(SRC_DIR)%, \
+	$(OBJ_DIR)%, \
+	$(patsubst %.cpp,%.o,$(wildcard $(SRC_DIR)*.cpp)))
 
-OBJECTS =  main.o $(addprefix $(OBJ_DIR), $(OBJS))
-
-.PHONY: clean
+OBJECTS =  main.o $(OBJS)
 
 all: $(BUILD)
 
+test:
+	echo $(TDDD)
+
 $(BUILD): $(OBJECTS)
-	$(CXX) $(LDFLAGS) -o $(BUILD) $(LDLIBS) $(OBJECTS)
+	$(CXX) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
