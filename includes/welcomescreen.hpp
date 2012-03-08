@@ -1,8 +1,8 @@
 #ifndef _WELCOME_SCREEN_H_
 #define _WELCOME_SCREEN_H_
 
-#include <screen.h>
-#include "menu.h"
+#include "screen.hpp"
+#include "menu.hpp"
 
 namespace snake {
     /**

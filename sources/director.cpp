@@ -1,7 +1,7 @@
 
-#include "welcomescreen.h"
-#include "gamescreen.h"
-#include "director.h"
+#include "welcomescreen.hpp"
+#include "gamescreen.hpp"
+#include "director.hpp"
 
 namespace snake {
     Director *Director::instance = 0;

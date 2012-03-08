@@ -1,6 +1,6 @@
 
-#include "welcomescreen.h"
-#include "snake.h"
+#include "welcomescreen.hpp"
+#include "snake.hpp"
 
 using namespace std;
 

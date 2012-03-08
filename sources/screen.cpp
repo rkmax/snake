@@ -1,5 +1,5 @@
 
-#include "screen.h"
+#include "screen.hpp"
 
 namespace snake {
 

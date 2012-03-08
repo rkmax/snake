@@ -1,5 +1,5 @@
 
-#include "menu.h"
+#include "menu.hpp"
 
 namespace snake {
 

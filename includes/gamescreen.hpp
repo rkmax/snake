@@ -1,7 +1,7 @@
 #ifndef _GAME_SCREEN_H
 #define _GAME_SCREEN_H
-#include "screen.h"
-#include "snake.h"
+#include "screen.hpp"
+#include "snake.hpp"
 
 namespace snake {
     /**

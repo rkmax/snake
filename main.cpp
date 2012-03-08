@@ -1,5 +1,5 @@
 
-#include "main.h"
+#include "main.hpp"
 
 using namespace sf;
 using namespace snake;

@@ -1,5 +1,5 @@
 
-#include "gamescreen.h"
+#include "gamescreen.hpp"
 
 namespace snake {
     GameScreen::GameScreen()
