@@ -27,10 +27,11 @@ namespace snake {
         chunkDir[3] = chunkDir[2];
 
         // Initial Chunks
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 3; ++i)
         {
             SnakeChunk ch;
-            ch.pos = Position(1, i * 64);
+            ch.pos = Position(0, i * 64);
+            movements.push(ch.pos);
             ch.direction = Dir::DOWN;
             chunks.push_front(ch);
         }
@@ -47,7 +48,7 @@ namespace snake {
 
         for(it = chunks.begin(); it != chunks.end(); ++it) {
 
-            if(it == chunks.begin()) {
+            if (it == chunks.begin()) {
                 it->spChunk.SetImage(imHead);
                 it->spChunk.SetSubRect(headTailDir[it->direction]);
             } else if (it == (--chunks.end())) {
@@ -65,24 +66,43 @@ namespace snake {
 
     void Snake::move(int newDir)
     {
-        std::list<SnakeChunk>::iterator it, prev;
+        std::list<SnakeChunk>::iterator it;
 
-        chunks.begin()->direction = newDir;
+        it = chunks.begin();
 
-        for (it = chunks.begin(); it != chunks.end(); ++it)
-        {
-            if(it == chunks.begin()) {
-
-                if (it->direction == Dir::LEFT || it->direction == Dir::RIGHT) {
-                    it->pos.X += velocity * directions[it->direction];
-                }
-
-                if (it->direction == Dir::UP || it->direction == Dir::DOWN) {
-                    it->pos.Y += velocity * directions[it->direction];
-                }
-            } else {
-
-            }
+        if (it->direction == Dir::LEFT ||
+            it->direction == Dir::RIGHT) {
+            it->pos.X += velocity * directions[it->direction];
         }
+
+        if (it->direction == Dir::UP ||
+            it->direction == Dir::DOWN) {
+            it->pos.Y += velocity * directions[it->direction];
+        }
+        it->direction = newDir;
+        movements.push(it->pos);
+
+        it++;
+        while(it != chunks.end()) {
+            it->pos = movements.front();
+            movements.push(it->pos);
+            movements.pop();
+
+            ++it;
+        }
+
+        it = chunks.end();
+        --it;
+        it->pos = movements.front();
+        movements.pop();
+
+
+        cout << "----------------" << endl;
+        it = chunks.begin();
+        while(it != chunks.end()) {
+            cout << "P: " << it->pos.Y << endl;
+            ++it;
+        }
+
     }
 }

@@ -10,11 +10,13 @@ RM = rm -rf
 OBJ_DIR = objects/
 SRC_DIR = sources/
 
-OBJS = screen.o welcomescreen.o gamescreen.o scorescreen.o directorapp.o director.o snake.o menu.o
+OBJS = screen.o welcomescreen.o \
+	   gamescreen.o scorescreen.o directorapp.o \
+	   director.o snake.o menu.o
 
 OBJECTS =  main.o $(addprefix $(OBJ_DIR), $(OBJS))
 
-.PHONY: clean $(BUILD)
+.PHONY: clean
 
 all: $(BUILD)
 

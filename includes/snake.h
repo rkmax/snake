@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <queue>
 #include <SFML/Graphics.hpp>
 
 using namespace std;
@@ -95,6 +96,8 @@ namespace snake {
         sf::IntRect chunkDir[4];
         sf::IntRect turnDir[4];
         int directions[4];
+
+        std::queue<Position> movements;
     };
 }
 #endif

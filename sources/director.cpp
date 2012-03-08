@@ -42,7 +42,7 @@ namespace snake {
 
     void Director::start()
     {
-        screen = new WelcomeScreen();
+        screen = new GameScreen();
 
         screen->setDirector(this);
 
