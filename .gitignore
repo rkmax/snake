@@ -1,3 +1,4 @@
 *.o
 *.sublime-workspace
 snake
+boost_test

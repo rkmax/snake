@@ -1,46 +1,9 @@
 #define BOOST_TEST_MODULE Position
 #include <boost/test/included/unit_test.hpp>
 
+#include "position.hpp"
 
-class Position {
-public:
-    Position(){}
-    Position(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-
-    int X;
-    int Y;
-    const Position &operator=(const Position &npos)
-    {
-        if(this == &npos) {
-            return *this;
-        }
-        (*this).X = npos.X;
-        (*this).Y = npos.Y;
-
-        return *this;
-    }
-
-    const Position &operator+(const Position &npos)
-    {
-        (*this).X += npos.X;
-        (*this).Y += npos.Y;
-
-        return *this;
-    }
-
-    const Position &operator-(const Position &npos)
-    {
-        (*this).X -= npos.X;
-        (*this).Y -= npos.Y;
-
-        return *this;
-    }
-
-};
+using namespace snake;
 
 BOOST_AUTO_TEST_CASE( Operador_Asignacion )
 {
@@ -63,4 +26,61 @@ BOOST_AUTO_TEST_CASE( Operador_Suma )
 
     BOOST_CHECK_EQUAL( p3.X, p1.X );
     BOOST_CHECK_EQUAL( p3.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Resta )
+{
+    Position p1(1, 2);
+    Position p2(2, 3);
+    Position p3(1, 1);
+
+    p1 = p2 - p1;
+
+    BOOST_CHECK_EQUAL( p3.X, p1.X );
+    BOOST_CHECK_EQUAL( p3.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Asignacion_Suma )
+{
+    Position p1(1, 2);
+    Position p2(2, 3);
+    Position p3(3, 5);
+
+    p1 += p2;
+
+    BOOST_CHECK_EQUAL( p3.X, p1.X );
+    BOOST_CHECK_EQUAL( p3.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Asignacion_Resta )
+{
+    Position p1(1, 2);
+    Position p2(2, 3);
+    Position p3(1, 1);
+
+    p2 -= p1;
+
+    BOOST_CHECK_EQUAL( p3.X, p2.X );
+    BOOST_CHECK_EQUAL( p3.Y, p2.Y );
+}
+
+
+BOOST_AUTO_TEST_CASE( Operador_Igualdad )
+{
+    Position p1(1, 2);
+    Position p2(2, 3);
+    Position p3(1, 2);
+
+    BOOST_CHECK_EQUAL( p1 == p3, true );
+    BOOST_CHECK_EQUAL( p1 == p2, false );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Desigualdad )
+{
+    Position p1(1, 2);
+    Position p2(2, 3);
+    Position p3(1, 2);
+
+    BOOST_CHECK_EQUAL( p1 != p3, false );
+    BOOST_CHECK_EQUAL( p1 != p2, true );
 }

@@ -3,13 +3,6 @@
 
 namespace snake {
 
-    Position::Position(){}
-
-    Position::Position(int x, int y){
-        X = x;
-        Y = y;
-    }
-
     Snake::Snake()
     {
         imHead.LoadFromFile("assets/snake_head.png");

@@ -3,7 +3,8 @@
 BUILD = boost_test
 
 LDFLAGS =
-LDLIBS = -lboost_unit_test_framework
+LDLIBS = -lboost_unit_test_framework \
+	../objects/position.o
 CXXFLAGS = -Wall -I./../includes
 RM = rm -rf
 
@@ -12,7 +13,7 @@ OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 OBJECTS = $(OBJS)
 
 all: clean $(BUILD)
-	./$(BUILD) --show_progress --build_info
+	./$(BUILD)
 
 $(BUILD): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@

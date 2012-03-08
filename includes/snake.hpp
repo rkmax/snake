@@ -6,6 +6,8 @@
 #include <queue>
 #include <SFML/Graphics.hpp>
 
+#include "position.hpp"
+
 using namespace std;
 
 namespace snake {
@@ -18,41 +20,6 @@ namespace snake {
         const int LEFT = 2;
         const int RIGHT = 3;
     }
-
-    class Position {
-    public:
-        Position();
-        Position(int, int);
-        int X;
-        int Y;
-        const Position &operator=(const Position &npos)
-        {
-            if(this == &npos) {
-                return *this;
-            }
-            (*this).X = npos.X;
-            (*this).Y = npos.Y;
-
-            return *this;
-        }
-
-        const Position &operator+(const Position &npos)
-        {
-            (*this).X += npos.X;
-            (*this).Y += npos.Y;
-
-            return *this;
-        }
-
-        const Position &operator-(const Position &npos)
-        {
-            (*this).X -= npos.X;
-            (*this).Y -= npos.Y;
-
-            return *this;
-        }
-
-    };
 
     /**
      * Es una seccion de la serpiente
