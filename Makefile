@@ -19,7 +19,7 @@ OBJECTS =  main.o $(OBJS)
 all: $(BUILD)
 
 test:
-	echo $(TDDD)
+	cd test; $(MAKE)
 
 $(BUILD): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
@@ -30,3 +30,5 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(OBJ_DIR)
 clean:
 	$(RM) $(OBJECTS) $(OBJ_DIR)
 	mkdir $(OBJ_DIR)
+
+.PHONY: test
