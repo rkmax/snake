@@ -1,27 +1,23 @@
 # Makefile
 
-BUILD = boost_test
-
 LDFLAGS =
-LDLIBS = -lboost_unit_test_framework \
-	../objects/position.o
+LDLIBS = -lboost_unit_test_framework -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
 CXXFLAGS = -Wall -I./../includes
 RM = rm -rf
 
-OBJS = $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+DEPS = position.o
 
-OBJECTS = $(OBJS)
-
-all: clean $(BUILD)
-	./$(BUILD)
-
-$(BUILD): $(OBJECTS)
-	$(CXX) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+all: clean
 
 clean:
-	$(RM) $(OBJECTS)
+	$(RM) *.o *_test
 
-.PHONY: $(BUILD)
+%_test: %.o unit_test_%.o $(DEPS)
+	$(CXX) $(LDFLAGS) $(LDLIBS) $? -o $@
+	./$@
+
+unit_test_%.o: unit_test_%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+%.o: ../sources/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@

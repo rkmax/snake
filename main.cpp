@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "main.hpp"
 
 using namespace sf;

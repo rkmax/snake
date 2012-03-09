@@ -9,6 +9,7 @@ namespace snake {
 
         int X;
         int Y;
+        int direction;
         const Position &operator=(const Position &);
         const Position &operator+=(const Position &);
         const Position &operator+(const Position &);
@@ -16,6 +17,11 @@ namespace snake {
         const Position &operator-(const Position &);
         const bool operator==(const Position &);
         const bool operator!=(const Position &);
+
+        const Position &operator+=(const int &);
+        const Position &operator+(const int &);
+        const Position &operator-=(const int &);
+        const Position &operator-(const int &);
     };
 }
 #endif

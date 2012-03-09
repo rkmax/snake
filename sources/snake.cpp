@@ -14,24 +14,30 @@ namespace snake {
         for (int i = Dir::UP; i <= Dir::RIGHT; ++i)
         {
             chunkDir[i] = headTailDir[i] = sf::IntRect(i * 256, 0, 256 + (i * 256), 256);
-            directions[i] = (i % 2 == 0) ? -1 : 1;
-        }
-        chunkDir[1] = chunkDir[0];
-        chunkDir[3] = chunkDir[2];
-
-        // Initial Chunks
-        for (int i = 1; i <= 3; ++i)
-        {
-            SnakeChunk ch;
-            ch.pos = Position(0, i * 64);
-            movements.push(ch.pos);
-            ch.direction = Dir::DOWN;
-            chunks.push_front(ch);
         }
 
         // Initial
         velocity = 5;
 
+
+        directions[Dir::UP] = -1;
+        directions[Dir::DOWN] = 1;
+        directions[Dir::LEFT] = -1;
+        directions[Dir::RIGHT] = 1;
+
+        chunkDir[1] = chunkDir[0];
+        chunkDir[3] = chunkDir[2];
+
+        // Initial Chunks
+        for (int i = 3; i >= 1; --i)
+        {
+            SnakeChunk ch;
+            ch.pos = Position(0, i * 64);
+            ch.pos.direction = Dir::DOWN;
+            chunks.push_back(ch);
+
+            if(i > 1) movements.push(ch.pos);
+        }
     }
 
     void Snake::draw(sf::RenderWindow& app)
@@ -43,13 +49,13 @@ namespace snake {
 
             if (it == chunks.begin()) {
                 it->spChunk.SetImage(imHead);
-                it->spChunk.SetSubRect(headTailDir[it->direction]);
+                it->spChunk.SetSubRect(headTailDir[it->pos.direction]);
             } else if (it == (--chunks.end())) {
                 it->spChunk.SetImage(imTail);
-                it->spChunk.SetSubRect(headTailDir[it->direction]);
+                it->spChunk.SetSubRect(headTailDir[it->pos.direction]);
             } else {
                 it->spChunk.SetImage(imChunk);
-                it->spChunk.SetSubRect(chunkDir[it->direction]);
+                it->spChunk.SetSubRect(chunkDir[it->pos.direction]);
             }
             it->spChunk.SetX(it->pos.X);
             it->spChunk.SetY(it->pos.Y);
@@ -57,45 +63,49 @@ namespace snake {
         }
     }
 
+    void Snake::move()
+    {
+        move(-1);
+    }
+
     void Snake::move(int newDir)
     {
-        std::list<SnakeChunk>::iterator it;
+        std::list<SnakeChunk>::iterator it, end;
+        end = chunks.end();
+        --end;
 
-        it = chunks.begin();
+        for (it = chunks.begin(); it != chunks.end(); ++it)
+        {
+            // Solo la cabeza cambia de direccion
+            if (it == chunks.begin()) {
+                if (newDir >= 0) {
+                    it->pos.direction = newDir;
+                }
+                // Calcula la nueva posicion basado en la velocidad
+                if (it->pos.direction == Dir::LEFT ||
+                        it->pos.direction == Dir::RIGHT) {
+                    it->pos.X += velocity * directions[it->pos.direction];
+                }
 
-        if (it->direction == Dir::LEFT ||
-            it->direction == Dir::RIGHT) {
-            it->pos.X += velocity * directions[it->direction];
+                if (it->pos.direction == Dir::UP ||
+                            it->pos.direction == Dir::DOWN) {
+                    it->pos.Y += velocity * directions[it->pos.direction];
+                }
+            } else {
+                // Todos los demas seleccionan nuevas posiciones
+                it->pos = movements.front();
+                movements.pop();
+            }
+
+            // Todos menos la cola añaden posiciones
+            if (it != end) {
+                movements.push(it->pos);
+            }
         }
+    }
 
-        if (it->direction == Dir::UP ||
-            it->direction == Dir::DOWN) {
-            it->pos.Y += velocity * directions[it->direction];
-        }
-        it->direction = newDir;
-        movements.push(it->pos);
-
-        it++;
-        while(it != chunks.end()) {
-            it->pos = movements.front();
-            movements.push(it->pos);
-            movements.pop();
-
-            ++it;
-        }
-
-        it = chunks.end();
-        --it;
-        it->pos = movements.front();
-        movements.pop();
-
-
-        cout << "----------------" << endl;
-        it = chunks.begin();
-        while(it != chunks.end()) {
-            cout << "P: " << it->pos.Y << endl;
-            ++it;
-        }
-
+    list<SnakeChunk> Snake::getChunks()
+    {
+        return chunks;
     }
 }

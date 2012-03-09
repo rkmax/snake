@@ -84,3 +84,49 @@ BOOST_AUTO_TEST_CASE( Operador_Desigualdad )
     BOOST_CHECK_EQUAL( p1 != p3, false );
     BOOST_CHECK_EQUAL( p1 != p2, true );
 }
+
+//
+
+BOOST_AUTO_TEST_CASE( Operador_Suma_Int )
+{
+    Position p1(1, 2);
+    Position p2(6, 7);
+
+    p1 = p1 + 5;
+
+    BOOST_CHECK_EQUAL( p2.X, p1.X );
+    BOOST_CHECK_EQUAL( p2.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Resta_Int )
+{
+    Position p1(6, 7);
+    Position p2(1, 2);
+
+    p1 = p1 - 5;
+
+    BOOST_CHECK_EQUAL( p2.X, p1.X );
+    BOOST_CHECK_EQUAL( p2.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Asignacion_Suma_Int )
+{
+    Position p1(1, 2);
+    Position p2(6, 7);
+
+    p1 += 5;
+
+    BOOST_CHECK_EQUAL( p2.X, p1.X );
+    BOOST_CHECK_EQUAL( p2.Y, p1.Y );
+}
+
+BOOST_AUTO_TEST_CASE( Operador_Asignacion_Resta_Int )
+{
+    Position p1(6, 7);
+    Position p2(1, 2);
+
+    p1 -= 5;
+
+    BOOST_CHECK_EQUAL( p2.X, p1.X );
+    BOOST_CHECK_EQUAL( p2.Y, p1.Y );
+}

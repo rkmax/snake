@@ -32,8 +32,6 @@ namespace snake {
             spChunk.SetScale(1.f/4.f, 1.f/4.f);
         }
         Position pos;
-        Position npos;
-        int direction;
         sf::Sprite spChunk;
     };
 
@@ -45,10 +43,12 @@ namespace snake {
         Snake();
 
         void move(int);
+        void move();
         void changeDirection(const int dir);
         void grow();
         void shrink();
         void draw(sf::RenderWindow&);
+        list<SnakeChunk> getChunks();
 
         int velocity;
     private:

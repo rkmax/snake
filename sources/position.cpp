@@ -15,16 +15,17 @@ namespace snake {
         if(this == &npos) {
             return *this;
         }
-        (*this).X = npos.X;
-        (*this).Y = npos.Y;
+        this->X = npos.X;
+        this->Y = npos.Y;
+        this->direction = npos.direction;
 
         return *this;
     }
 
     const Position &Position::operator+=(const Position &npos)
     {
-        (*this).X += npos.X;
-        (*this).Y += npos.Y;
+        this->X += npos.X;
+        this->Y += npos.Y;
 
         return *this;
     }
@@ -37,8 +38,8 @@ namespace snake {
 
     const Position &Position::operator-=(const Position &npos)
     {
-        (*this).X -= npos.X;
-        (*this).Y -= npos.Y;
+        this->X -= npos.X;
+        this->Y -= npos.Y;
 
         return *this;
     }
@@ -56,6 +57,31 @@ namespace snake {
     const bool Position::operator!=(const Position &npos)
     {
         return !(*this == npos);
+    }
+
+    const Position &Position::operator+=(const int &n)
+    {
+        this->X += n;
+        this->Y += n;
+
+        return *this;
+    }
+
+    const Position &Position::operator+(const int &n)
+    {
+        return *this += n;
+    }
+
+    const Position &Position::operator-=(const int &n)
+    {
+        this->X -= n;
+        this->Y -= n;
+
+        return *this;
+    }
+    const Position &Position::operator-(const int &n)
+    {
+        return *this -= n;
     }
 
 }
